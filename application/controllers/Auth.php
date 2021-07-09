@@ -29,7 +29,7 @@ class Auth extends CI_Controller
 
 		if (!$this->ion_auth->logged_in()) {
 			// redirect them to the login page
-			redirect('auth/login', 'refresh');
+			$this->template->load('login', 'auth/login', 'refresh');
 		} else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
 		{
 			// redirect them to the home page because they must be an administrator to view this
@@ -50,7 +50,7 @@ class Auth extends CI_Controller
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
 
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'index', $this->data);
+			$this->template->view('auth' . DIRECTORY_SEPARATOR . 'index', $this->data);
 		}
 	}
 
@@ -79,7 +79,7 @@ class Auth extends CI_Controller
 				// if the login was un-successful
 				// redirect them back to the login page
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				// redirect('auth/login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
+				// $this->template->load('login','auth/login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
 				$this->template->load('auth/login');
 			}
 		} else {
@@ -100,7 +100,7 @@ class Auth extends CI_Controller
 				'type' => 'password',
 			];
 
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'login', $this->data);
+			$this->template->load('login', 'auth' . DIRECTORY_SEPARATOR . 'login', $this->data);
 		}
 	}
 
@@ -115,7 +115,7 @@ class Auth extends CI_Controller
 		$this->ion_auth->logout();
 
 		// redirect them to the login page
-		redirect('auth/login', 'refresh');
+		$this->template->load('login', 'auth/login', 'refresh');
 	}
 
 	/**
@@ -128,7 +128,7 @@ class Auth extends CI_Controller
 		$this->form_validation->set_rules('new_confirm', $this->lang->line('change_password_validation_new_password_confirm_label'), 'required');
 
 		if (!$this->ion_auth->logged_in()) {
-			redirect('auth/login', 'refresh');
+			$this->template->load('login', 'auth/login', 'refresh');
 		}
 
 		$user = $this->ion_auth->user()->row();
@@ -164,7 +164,7 @@ class Auth extends CI_Controller
 			];
 
 			// render
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'change_password', $this->data);
+			$this->template->load('auth' . DIRECTORY_SEPARATOR . 'change_password', $this->data);
 		} else {
 			$identity = $this->session->userdata('identity');
 
@@ -212,7 +212,7 @@ class Auth extends CI_Controller
 
 			// set any errors and display the form
 			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'forgot_password', $this->data);
+			$this->template->load('auth' . DIRECTORY_SEPARATOR . 'forgot_password', $this->data);
 		} else {
 			$identity_column = $this->config->item('identity', 'ion_auth');
 			$identity = $this->ion_auth->where($identity_column, $this->input->post('identity'))->users()->row();
@@ -293,7 +293,7 @@ class Auth extends CI_Controller
 				$this->data['code'] = $code;
 
 				// render
-				$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'reset_password', $this->data);
+				$this->template->load('auth' . DIRECTORY_SEPARATOR . 'reset_password', $this->data);
 			} else {
 				$identity = $user->{$this->config->item('identity', 'ion_auth')};
 
@@ -376,7 +376,7 @@ class Auth extends CI_Controller
 			$this->data['user'] = $this->ion_auth->user($id)->row();
 			$this->data['identity'] = $this->config->item('identity', 'ion_auth');
 
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'deactivate_user', $this->data);
+			$this->template->load('auth' . DIRECTORY_SEPARATOR . 'deactivate_user', $this->data);
 		} else {
 			// do we really want to deactivate?
 			if ($this->input->post('confirm') == 'yes') {
@@ -496,7 +496,7 @@ class Auth extends CI_Controller
 				'value' => $this->form_validation->set_value('password_confirm'),
 			];
 
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'create_user', $this->data);
+			$this->template->load('auth' . DIRECTORY_SEPARATOR . 'create_user', $this->data);
 		}
 	}
 	/**
@@ -634,7 +634,7 @@ class Auth extends CI_Controller
 			'type' => 'password'
 		];
 
-		$this->_render_page('auth/edit_user', $this->data);
+		$this->template->load('auth/edit_user', $this->data);
 	}
 
 	/**
@@ -680,7 +680,7 @@ class Auth extends CI_Controller
 			'value' => $this->form_validation->set_value('description'),
 		];
 
-		$this->_render_page('auth/create_group', $this->data);
+		$this->template->load('auth/create_group', $this->data);
 	}
 
 	/**
@@ -744,7 +744,7 @@ class Auth extends CI_Controller
 			'value' => $this->form_validation->set_value('group_description', $group->description),
 		];
 
-		$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'edit_group', $this->data);
+		$this->template->load('auth' . DIRECTORY_SEPARATOR . 'edit_group', $this->data);
 	}
 
 	/**

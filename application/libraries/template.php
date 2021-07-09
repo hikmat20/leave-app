@@ -8,10 +8,14 @@ class Template
         $this->template_data[$name] = $value;
     }
 
-    function load($view = null, $view_data = array(), $return = FALSE)
+    function load($template, $view = null, $view_data = array(), $return = FALSE)
     {
+
+        // $template = '';
         $this->CI = &get_instance();
         $this->set('contents', $this->CI->load->view($view, $view_data, TRUE));
-        return $this->CI->load->view('layouts/app', $this->template_data, $return);
+
+        $temp = ($template) ? 'layouts/' . $template : 'layouts/app';
+        return $this->CI->load->view($temp, $this->template_data, $return);
     }
 };
