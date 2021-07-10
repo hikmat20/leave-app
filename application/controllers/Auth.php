@@ -26,10 +26,9 @@ class Auth extends CI_Controller
 	 */
 	public function index()
 	{
-
 		if (!$this->ion_auth->logged_in()) {
 			// redirect them to the login page
-			$this->template->load('login', 'auth/login', 'refresh');
+			redirect('auth/login', 'refresh');
 		} else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
 		{
 			// redirect them to the home page because they must be an administrator to view this
@@ -50,7 +49,8 @@ class Auth extends CI_Controller
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
 
-			$this->template->view('auth' . DIRECTORY_SEPARATOR . 'index', $this->data);
+			// $this->template->view('', 'auth' . DIRECTORY_SEPARATOR . 'index', $this->data);
+			$this->template->load('', 'dashboard' . DIRECTORY_SEPARATOR . 'index', $this->data);
 		}
 	}
 
@@ -59,6 +59,11 @@ class Auth extends CI_Controller
 	 */
 	public function login()
 	{
+
+		if ($this->ion_auth->logged_in()) {
+			redirect('dashboard', 'refresh');
+		}
+
 		$this->data['title'] = $this->lang->line('login_heading');
 
 		// validate form input
@@ -80,12 +85,12 @@ class Auth extends CI_Controller
 				// redirect them back to the login page
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
 				// $this->template->load('login','auth/login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
-				$this->template->load('auth/login');
+				redirect('auth/login', 'refresh');
 			}
 		} else {
 			// the user is not logging in so display the login page
 			// set the flash data error message if there is one
-			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+			$this->data['message'] = (validation_errors()) ? validation_errors('<label>', '</label>') : $this->session->flashdata('message');
 
 			$this->data['identity'] = [
 				'name' => 'identity',
@@ -115,7 +120,7 @@ class Auth extends CI_Controller
 		$this->ion_auth->logout();
 
 		// redirect them to the login page
-		$this->template->load('login', 'auth/login', 'refresh');
+		redirect('auth/login', 'refresh');
 	}
 
 	/**

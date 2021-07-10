@@ -11,12 +11,18 @@
     <meta name="robots" content="noindex,nofollow">
     <title>Matrix Admin Lite Free Versions Template by WrapPixel</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url(); ?>/assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url(); ?>assets/images/conf/favicon.png">
     <!-- Custom CSS -->
-    <link href="<?= base_url(); ?>/assets/libs/plugins/flot/css/float-chart.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/libs/plugins/toastr/build/toastr.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/libs/plugins/lobibox/dist/css/lobibox.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="<?= base_url(); ?>/assets/libs/dist/css/style.min.css" rel="stylesheet">
-
+    <link href="<?= base_url(); ?>assets/libs/dist/css/style.min.css" rel="stylesheet">
+    <script src="<?= base_url(); ?>assets/libs/plugins/jquery/dist/jquery.min.js"></script>
+    <script>
+        let site_url = '<?= base_url() ?>';
+        let controller = '<?= $this->uri->segment(1) ?>'
+        let url_controller = '<?= base_url() . $this->uri->segment(1) ?>'
+    </script>
 </head>
 
 <body>
@@ -34,7 +40,9 @@
     <!-- Bootstrap tether Core JavaScript -->
     <script src="<?= base_url(); ?>assets/libs/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="<?= base_url(); ?>assets/libs/plugins/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="<?= base_url(); ?>assets/extr/pluginsa-libs/sparkline/sparkline.js"></script>
+    <script src="<?= base_url(); ?>assets/libs/plugins/sparkline/sparkline.js"></script>
+    <script src="<?= base_url(); ?>assets/libs/plugins/toastr/build/toastr.min.js"></script>
+    <script src="<?= base_url(); ?>assets/libs/plugins/lobibox/dist/js/notifications.js"></script>
     <!--Wave Effects -->
     <script src="<?= base_url(); ?>assets/libs/dist/js/waves.js"></script>
     <!--Menu sidebar -->

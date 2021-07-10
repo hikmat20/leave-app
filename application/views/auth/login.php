@@ -3,13 +3,13 @@
      <div class="row justify-content-center align-items-center">
        <div class="col-md-5">
          <div class="login-form bg-dark text-light shadow-lg pb-4" style="border-radius: 1em;">
-           <div class="img-fluid pb-3 text-center">
-             <img src="<?= base_url('assets/images/logo.jpg'); ?>" alt="" class="p-0 m-0" style="border-radius: 1em 1em 0 0;width:100%;height:80px">
+           <div class="img-fluid pb-3 pt-3 text-center">
+             <img class="w-75" src="<?= base_url('assets/images/conf/logo-sl.png'); ?>" alt="" class="p-0 m-0" style="border-radius: 1em 1em 0 0;width:;">
            </div>
-           <!-- <div id="infoMessage"><?php echo $message; ?></div> -->
-           <?php echo form_open("auth/login", "class='row g-3 px-4'"); ?>
+           <div id="infoMessage" class="text-center text-danger"><?php echo $message; ?></div>
+           <?php echo form_open("auth/login", "id='form-login' class='row g-3 px-4'"); ?>
            <div class="col-12">
-             <label><?php echo lang('login_identity_label', 'identity'); ?></label>
+             <label>Username</label>
              <div class="input-group input-group-lg rounded-pill">
                <span class="input-group-text bg-warning border-0" id="inputGroup-sizing-lg"><i class="mdi mdi-account text-dark"></i></span>
                <?php echo form_input($identity, '', 'class="form-control form-control-lg" placeholder="Username"'); ?>
@@ -26,9 +26,9 @@
              <?php echo form_checkbox('remember', '1', FALSE, 'id="remember"', 'class="form-check-input"'); ?>
              <label class="form-check-label" for="rememberMe"> <?php echo lang('login_remember_label', 'remember'); ?></label>
            </div>
-           <?php echo form_submit('submit', lang('login_submit_btn'), 'class="btn btn-warning text-dark btn-lg btn-block rounded-pill fw-bold"'); ?>
+           <?php echo form_submit('submit', lang('login_submit_btn'), 'id="lo-gin" class="btn btn-warning text-dark btn-lg btn-block rounded-pill fw-bold"'); ?>
            <?php echo form_close(); ?>
-
+           <!-- <button id="test-notif" class="btn btn-default">Notif</button> -->
            <hr class="mt-4">
            <div class="col-12">
              <!-- <p class="text-center mb-0">Have not account yet? <a href="#">Signup</a></p> -->
@@ -40,3 +40,19 @@
 
    </div>
  </div>
+
+ <script>
+   $(document).ready(function() {
+
+     if ('<?= $message; ?>') {
+       Lobibox.notify('error', {
+         size: 'mini',
+         rounded: true,
+         position: 'center top', //or 'center bottom'
+         msg: '<?= $message; ?>'
+       });
+     }
+
+
+   })
+ </script>
