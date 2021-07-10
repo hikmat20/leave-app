@@ -26,13 +26,17 @@
              <?php echo form_checkbox('remember', '1', FALSE, 'id="remember"', 'class="form-check-input"'); ?>
              <label class="form-check-label" for="rememberMe"> <?php echo lang('login_remember_label', 'remember'); ?></label>
            </div>
-           <?php echo form_submit('submit', lang('login_submit_btn'), 'id="lo-gin" class="btn btn-warning text-dark btn-lg btn-block rounded-pill fw-bold"'); ?>
+           <div class="col-md-12 d-grid gap-2">
+             <?php echo form_submit('submit', lang('login_submit_btn'), 'id="lo-gin" class="btn btn-warning text-dark btn-lg rounded-3 fw-bold"'); ?>
+           </div>
+
            <?php echo form_close(); ?>
+
            <!-- <button id="test-notif" class="btn btn-default">Notif</button> -->
-           <hr class="mt-4">
-           <div class="col-12">
+           <!-- <hr class="mt-4"> -->
+           <div class="col-12 mt-2">
              <!-- <p class="text-center mb-0">Have not account yet? <a href="#">Signup</a></p> -->
-             <p class="text-center mb-0"><a href="forgot_password" class="text-warning"><?php echo lang('login_forgot_password'); ?></a></p>
+             <!-- <p class="text-center mb-0"><a href="forgot_password" class="text-warning"><?php echo lang('login_forgot_password'); ?></a></p> -->
            </div>
          </div>
        </div>
@@ -45,7 +49,7 @@
    $(document).ready(function() {
 
      if ('<?= $message; ?>') {
-       Lobibox.notify('error', {
+       Lobibox.notify('default', {
          size: 'mini',
          rounded: true,
          position: 'center top', //or 'center bottom'
