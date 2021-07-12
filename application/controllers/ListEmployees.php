@@ -6,10 +6,13 @@ class ListEmployees extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
         if (!$this->ion_auth->logged_in()) {
             // redirect them to the login page
-            redirect('auth/login', 'refresh');
+            redirect('auth/login');
         }
+
+        $this->load->model('Employees/EmployeesModel', 'Empl');
 
         $this->template->set([
             'page_title' => 'Employees',
@@ -18,6 +21,11 @@ class ListEmployees extends CI_Controller
     }
     public function index()
     {
+
+        $employees = $this->Empl->all()->result();
+        $this->template->set([
+            'employees' => $employees
+        ]);
         $this->template->load('', 'listEmployees/index');
     }
 
