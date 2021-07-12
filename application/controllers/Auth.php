@@ -49,8 +49,9 @@ class Auth extends CI_Controller
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
 
-			// $this->template->view('', 'auth' . DIRECTORY_SEPARATOR . 'index', $this->data);
-			$this->template->load('', 'dashboard' . DIRECTORY_SEPARATOR . 'index', $this->data);
+			redirect('dashboard');
+			// $this->load->view('layouts/dashboard' . DIRECTORY_SEPARATOR . 'index', $this->data);
+			// $this->template->load('', 'dashboard' . DIRECTORY_SEPARATOR . 'index', $this->data);
 		}
 	}
 

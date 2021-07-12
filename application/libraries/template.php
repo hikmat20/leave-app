@@ -1,14 +1,21 @@
 <?php
 class Template
 {
-    var $template_data = [];
+    private $_data = [];
 
-    function set($name, $value)
+    public function set($name, $value = NULL)
     {
-        $this->template_data[$name] = $value;
+        if (is_array($name) or is_object($name)) {
+            foreach ($name as $item => $value) {
+                $this->_data[$item] = $value;
+            }
+        } else {
+            $this->_data[$name] = $value;
+        }
+        return $this;
     }
 
-    function load($template, $view = null, $view_data = array(), $return = FALSE)
+    public function load($template, $view = null, $view_data = array(), $return = FALSE)
     {
 
         // $template = '';
@@ -16,6 +23,6 @@ class Template
         $this->set('contents', $this->CI->load->view($view, $view_data, TRUE));
 
         $temp = ($template) ? 'layouts/' . $template : 'layouts/app';
-        return $this->CI->load->view($temp, $this->template_data, $return);
+        return $this->CI->load->view($temp, $this->_data, $return);
     }
 };

@@ -1,10 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller
+class ListEmployees extends CI_Controller
 {
-    private $data = [];
-
     public function __construct()
     {
         parent::__construct();
@@ -12,15 +10,19 @@ class Dashboard extends CI_Controller
             // redirect them to the login page
             redirect('auth/login', 'refresh');
         }
+
         $this->template->set([
-            'page_title' => 'Dashboard',
-            'page_icon' => 'mdi mdi-dashboard'
+            'page_title' => 'Employees',
+            'page_icon' => 'mdi-account-multiple',
         ]);
     }
-
     public function index()
     {
-        // $this->template->set('nama', 'halaman');
-        $this->template->load('', 'dashboard/index', $this->data);
+        $this->template->load('', 'listEmployees/index');
+    }
+
+    public function employees()
+    {
+        $this->load->view('listEmployees/employess');
     }
 }

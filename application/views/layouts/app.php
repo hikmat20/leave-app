@@ -15,6 +15,8 @@
     <!-- Custom CSS -->
     <link href="<?= base_url(); ?>assets/libs/plugins/flot/css/float-chart.css" rel="stylesheet">
     <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/libs/plugins/multicheck/multicheck.css">
+    <link href="<?= base_url(); ?>assets/libs/plugins/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/libs/dist/css/style.min.css" rel="stylesheet">
     <script src="<?= base_url(); ?>assets/libs/plugins/jquery/dist/jquery.min.js"></script>
     <script>
@@ -155,26 +157,35 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="pt-4">
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Forms </span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('/dashboard'); ?>" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Employes </span></a>
                             <ul aria-expanded="false" class="collapse first-level bg-dark animated animate fadeIn">
-                                <li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Form Basic
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Form Wizard
-                                        </span></a></li>
+                                <li class="sidebar-item"><a href="<?= base_url('listEmployees'); ?>" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> List Employees</span></a></li>
+                                <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Employee leaves</span></a></li>
                             </ul>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-buttons.html" aria-expanded="false"><i class="mdi mdi-relative-scale"></i><span class="hide-menu">Buttons</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">Icons </span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Leave Application </span></a>
+                            <ul aria-expanded="false" class="collapse first-level bg-dark animated animate fadeIn">
+                                <li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Create Leave Application</span></a></li>
+                                <li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Waiting Approval</span></a></li>
+                                <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Employee leaves</span></a></li>
+                                <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Reports</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Reports </span></a>
+                            <ul aria-expanded="false" class="collapse first-level bg-dark animated animate fadeIn">
+                                <li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Report Leave Application</span></a></li>
+                                <li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Report Employee leave</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">Settings </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="icon-material.html" class="sidebar-link"><i class="mdi mdi-emoticon"></i><span class="hide-menu"> Material Icons
-                                        </span></a></li>
-                                <li class="sidebar-item"><a href="icon-fontawesome.html" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> Font Awesome
-                                            Icons </span></a></li>
+                                <li class="sidebar-item"><a href="icon-material.html" class="sidebar-link"><i class="mdi mdi-emoticon"></i><span class="hide-menu"> Leave Category</span></a></li>
+                                <li class="sidebar-item"><a href="icon-material.html" class="sidebar-link"><i class="mdi mdi-emoticon"></i><span class="hide-menu"> Users</span></a></li>
+                                <li class="sidebar-item"><a href="icon-fontawesome.html" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> Menus </span></a></li>
+                                <li class="sidebar-item"><a href="icon-fontawesome.html" class="sidebar-link"><i class="mdi mdi-emoticon-cool"></i><span class="hide-menu"> Permisions </span></a></li>
                             </ul>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-elements.html" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu">Elements</span></a></li>
-
                     </ul>
                 </nav>
             </div>
@@ -185,11 +196,11 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Dashboard</h4>
+                        <h3 class="page-title"><span class="mdi mdi <?= ($page_icon) ? $page_icon : 'mdi-table'; ?> mdi-36px"></span> <?= (@$page_title) ? $page_title : 'Unnamed Page'; ?></h3>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Library</li>
                                 </ol>
                             </nav>
@@ -213,6 +224,7 @@
     <script src="<?= base_url(); ?>assets/libs/plugins/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="<?= base_url(); ?>assets/libs/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
     <script src="<?= base_url(); ?>assets/libs/plugins/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
     <script src="<?= base_url(); ?>assets/libs/plugins/sparkline/sparkline.js"></script>
     <!--Wave Effects -->
@@ -221,17 +233,10 @@
     <script src="<?= base_url(); ?>assets/libs/dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="<?= base_url(); ?>assets/libs/dist/js/custom.min.js"></script>
-    <!--This page JavaScript -->
-    <!-- <script src="assets/libs/dist/js/pages/dashboards/dashboard1.js"></script> -->
-    <!-- Charts js Files -->
-    <script src="<?= base_url(); ?>assets/libs/plugins/flot/excanvas.js"></script>
-    <script src="<?= base_url(); ?>assets/libs/plugins/flot/jquery.flot.js"></script>
-    <script src="<?= base_url(); ?>assets/libs/plugins/flot/jquery.flot.pie.js"></script>
-    <script src="<?= base_url(); ?>assets/libs/plugins/flot/jquery.flot.time.js"></script>
-    <script src="<?= base_url(); ?>assets/libs/plugins/flot/jquery.flot.stack.js"></script>
-    <script src="<?= base_url(); ?>assets/libs/plugins/flot/jquery.flot.crosshair.js"></script>
-    <script src="<?= base_url(); ?>assets/libs/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-    <script src="<?= base_url(); ?>assets/libs/dist/js/pages/chart/chart-page-init.js"></script>
+    <!-- this page js -->
+    <script src="<?= base_url(); ?>assets/libs/plugins/multicheck/datatable-checkbox-init.js"></script>
+    <script src="<?= base_url(); ?>assets/libs/plugins/multicheck/jquery.multicheck.js"></script>
+    <script src="<?= base_url(); ?>assets/libs/plugins/DataTables/datatables.min.js"></script>
 
 </body>
 
